@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Eventing.Reader;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -19,6 +20,12 @@ public class ModelBindingModel : PageModel
     [Required]
     public string Password {get; set;} = string.Empty;
 
+    [BindProperty]
+    public int LoginRole {get; set;}
+    
+    [BindProperty]
+    public bool RememberMe {get; set;}
+
     public ModelBindingModel(ILogger<ModelBindingModel> logger)
     {
         _logger = logger;
@@ -31,6 +38,6 @@ public class ModelBindingModel : PageModel
 
     public void OnPost()
     {
-        _logger.LogWarning($"OnPost Called. User name = {Username} Password = {Password}");
+        _logger.LogWarning($"OnPost Called. User name = {Username} Password = {Password} Login Role = {LoginRole} Remember Me = {RememberMe}");
     }
 }
