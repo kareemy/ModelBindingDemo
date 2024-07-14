@@ -15,7 +15,7 @@ public class ModelBindingModel : PageModel
     public string Username {get; set;} = string.Empty;
 
     [BindProperty]
-    [StringLength(60, MinimumLength = 8)]
+    [StringLength(60, MinimumLength = 8, ErrorMessage = "Your password must be at least 8 characters.")]
     [Required]
     public string Password {get; set;} = string.Empty;
 
