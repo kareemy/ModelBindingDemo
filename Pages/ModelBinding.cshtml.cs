@@ -36,8 +36,15 @@ public class ModelBindingModel : PageModel
 
     }
 
-    public void OnPost()
+    public IActionResult OnPost()
     {
-        _logger.LogWarning($"OnPost Called. User name = {Username} Password = {Password} Login Role = {LoginRole} Remember Me = {RememberMe}");
+        if (!ModelState.IsValid)
+        {
+            _logger.LogWarning("OnPost Called. INVALID DATA. Returning to page.");
+            return Page();
+        }
+
+        _logger.LogWarning($"OnPost Called. Data is Validated. User name = {Username} Password = {Password} Login Role = {LoginRole} Remember Me = {RememberMe}");
+        return Page();
     }
 }
